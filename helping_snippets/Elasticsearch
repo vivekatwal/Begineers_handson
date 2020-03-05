@@ -26,5 +26,19 @@ GET _snapshot/_all
 -- take snapshot
 PUT _snapshot/index_name/snapshot-one?wait_for_completion=true
 
+-- another way of taking snapshot
+POST _snapshot/taxi/snapshot-one/_restore
+{
+  "indices": "taxi",
+  "ignore_unavailable": true,
+  "include_global_state": true, 
+  "rename_pattern": "taxi",
+  "rename_replacement": "taxi_1"
+}
 
+links:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html
+https://opendistro.github.io/for-elasticsearch-docs/docs/elasticsearch/snapshot-restore/
+https://www.elastic.co/guide/en/cloud/current/ec-migrate-data.html
+---------------------------------------------------------------------------
 
