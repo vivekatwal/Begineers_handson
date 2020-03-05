@@ -1,1 +1,30 @@
 
+------------SNAPSHOT--------------
+#Creating Snapshot:
+
+>> mkdir ~/elasticsearch_backup
+
+-- add backup folder path in elasticsearch.yml
+>> path.repo: ["~/elasticsearch_backup"]
+
+--restart elasticsearch
+>> sudo service elasticsearch restart
+
+-- register backup path in elasticsearch
+>> GET _snapshot/index_name
+      {
+        "type": "fs",
+        "settings": {
+          "compress": true,
+          "location": "~/elasticsearch_backup"
+        }
+      }
+
+-- check or confirm if backup path is registered or not
+GET _snapshot/_all
+
+-- take snapshot
+PUT _snapshot/index_name/snapshot-one?wait_for_completion=true
+
+
+
