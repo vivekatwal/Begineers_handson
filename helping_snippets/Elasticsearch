@@ -11,7 +11,7 @@
 >> sudo service elasticsearch restart
 
 -- register backup path in elasticsearch
->> GET _snapshot/index_name
+>> PUT _snapshot/index_name
       {
         "type": "fs",
         "settings": {
